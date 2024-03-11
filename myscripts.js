@@ -255,9 +255,6 @@ async function showEdgeDescription(select, select2, select3, desc, extraDiv, pro
         document.getElementById(prodigyChoice).style.display = 'none';
     }
 
-    console.log(document.getElementById('edgeSelection1').value == 'focused');
-    console.log(document.getElementById('edgeSelection2').value == 'focused');
-
     var y;
     if (select == 'edgeSelection1')
     {
@@ -538,7 +535,6 @@ async function showFocusDescription(select, descDiv, levelDesc, focusSelect, opt
         // They are not the same, display normally; first level and description
         else 
         {
-            console.log('here');
             // e is the edge selector, x is the value
             var e = document.getElementById(select);
             var x = e.value;
@@ -1033,7 +1029,6 @@ const skillsPDF = ['administer', 'connect', 'drive', 'exert', 'fix', 'heal', 'kn
 
 async function fillOutCharacterSheet()
 {
-    console.log('in it');
     const formUrl = "./CWN_Character_Sheet.pdf";
     const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer());
 
@@ -1100,7 +1095,7 @@ async function fillOutCharacterSheet()
     
     var foci1 = selectText('focusChoice');
     var foci1_lvl;
-    var foci1_desc = document.getElementById('focusDesc').textContent;
+    var foci1_desc;
 
     // min num Foci = 2
     if (firstEdge == 'Focused' || secondEdge == 'Focused')
@@ -1120,7 +1115,8 @@ async function fillOutCharacterSheet()
             {
                 foci1_lvl = 2;
                 foci3_lvl = 1;
-                foci3_desc = document.getElementById('focusDesc3').textContent;
+                foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 2);
+                foci3_desc = await getFociSum(document.getElementById('focusChoice3').value, 1);
 
                 form.getTextField('Focus1').setText(foci1);
                 form.getTextField('Focus Details1').setText(foci1_desc);
@@ -1134,7 +1130,8 @@ async function fillOutCharacterSheet()
             {
                 foci1_lvl = 2;
                 foci2_lvl = 1;
-                foci2_desc = document.getElementById('focusDesc2').textContent;
+                foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 2);
+                foci2_desc = await getFociSum(document.getElementById('focusChoice2').value, 1);
 
                 form.getTextField('Focus1').setText(foci1);
                 form.getTextField('Focus Details1').setText(foci1_desc);
@@ -1148,7 +1145,8 @@ async function fillOutCharacterSheet()
             {
                 foci1_lvl = 1;
                 foci2_lvl = 2;
-                foci2_desc = document.getElementById('focusDesc2').textContent;
+                foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 1);
+                foci2_desc = await getFociSum(document.getElementById('focusChoice2').value, 2);
 
                 form.getTextField('Focus1').setText(foci1);
                 form.getTextField('Focus Details1').setText(foci1_desc);
@@ -1163,8 +1161,9 @@ async function fillOutCharacterSheet()
                 foci1_lvl = 1;
                 foci2_lvl = 1;
                 foci3_lvl = 1;
-                foci2_desc = document.getElementById('focusDesc2').textContent;
-                foci3_desc = document.getElementById('focusDesc3').textContent;
+                foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 1);
+                foci2_desc = await getFociSum(document.getElementById('focusChoice2').value, 1);
+                foci2_desc = await getFociSum(document.getElementById('focusChoice2').value, 1);
                 form.getTextField('Focus1').setText(foci1);
                 form.getTextField('Focus Details1').setText(foci1_desc);
                 form.getTextField('Focus1Lvl').setText('' + foci1_lvl + '');
@@ -1178,6 +1177,7 @@ async function fillOutCharacterSheet()
         }
         else if (firstEdge == "Voice of the People" || secondEdge == "Voice of the People")
         {
+            foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 1);
             form.getTextField('Focus1').setText(foci1);
             form.getTextField('Focus Details1').setText(foci1_desc);
             form.getTextField('Focus1Lvl').setText('' + 1 + '');
@@ -1191,6 +1191,7 @@ async function fillOutCharacterSheet()
             if (foci1 == foci2)
             {
                 foci1_lvl = 2;
+                foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 2);
                 form.getTextField('Focus1').setText(foci1);
                 form.getTextField('Focus Details1').setText(foci1_desc);
                 form.getTextField('Focus1Lvl').setText('' + foci1_lvl + '');
@@ -1199,7 +1200,8 @@ async function fillOutCharacterSheet()
             {
                 foci1_lvl = 1;
                 foci2_lvl = 1;
-                foci2_desc = document.getElementById('focusDesc2').textContent;
+                foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 1);
+                foci2_desc = await getFociSum(document.getElementById('focusChoice2').value, 1);
 
                 form.getTextField('Focus1').setText(foci1);
                 form.getTextField('Focus Details1').setText(foci1_desc);
@@ -1213,6 +1215,7 @@ async function fillOutCharacterSheet()
     // 1 Focus and potentially Pop Idol
     else
     {
+        foci1_desc = await getFociSum(document.getElementById('focusChoice').value, 1);
         form.getTextField('Focus1').setText(foci1);
         form.getTextField('Focus Details1').setText(foci1_desc);
         form.getTextField('Focus1Lvl').setText('' + 1 + '');
@@ -1226,7 +1229,7 @@ async function fillOutCharacterSheet()
     }
 
     const pdfBytes = await pdfDoc.save();
-    download(pdfBytes, 'cwn_sheet.pdf', 'application/pdf');     
+    download(pdfBytes, document.getElementById('c_name').value + '_cwn_sheet.pdf', 'application/pdf');     
 }
 
 function capitalFirst(word)
@@ -1241,7 +1244,22 @@ function selectText(id)
     return x.options[x.selectedIndex].text;
 }
 
-async function getFociDesc(name)
+async function getFociSum(name, level)
 {
+    let obj;
+    const res = await fetch('./json/foci.json')
+    obj = await res.json();
 
+    let sum;
+
+    if (level == 1)
+    {
+        sum = obj[name].level_1_sum;
+    }
+    else
+    {
+        sum = obj[name].level_2_sum;
+    }
+
+    return sum;
 }

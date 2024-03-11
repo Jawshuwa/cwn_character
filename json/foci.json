@@ -2,7 +2,7 @@
     "ace_driver":{
         "name":"Ace Driver",
         "desc":"If it's got wheels or wings, you can drive it. Your background may lend itself to a particular type of transport, but your natural talent lets you operate any vehicle with an almost instinctive aptitude. These Focus benefits do not apply to drone piloting, however",
-        "level_1":"Gain Drive as a bonus skill. You have 'acquired' vehicles worth no more than the budget on page 18, and can replace lost or  destroyed gear at a rate of $10,000 per week. Once per scene, as an Instant action, reroll a failed skill check related to driving or vehicle maintenance and repair.",
+        "level_1":"Gain Drive as a bonus skill. You have 'acquired' vehicles worth no more than the budget, and can replace lost or  destroyed gear at a rate of $10,000 per week. Once per scene, as an Instant action, reroll a failed skill check related to driving or vehicle maintenance and repair.",
         "level_2":"Gain Fix as a bonus skill. The Speed of a vehicle you drive is increased by 1 point. Once per vehicle, you can add a mod to it for free, ignoring money money and experimental equipment costs. Only you can effectively operate this mod, but it requires no Maintenance. You can change this free mod with a week of downtime.",
         "level_1_sum":"Gain Drive as a bonus skill. $5,000 vehicle budget. Reroll a driving or maintenance skill check.",
         "level_2_sum":"Gain Fix as a bonus skill. Vehicle Speed +1. One free mod per vehicle, only you can operate it.",
@@ -74,7 +74,7 @@
         "desc":"Any skilled medic can implant and maintain cyber systems, but you have a special aptitude for the work.",
         "level_1":"Gain Fix and Heal as bonus skills. You start play with a cyberdoc kit, and you can implant cyberware even if your Heal skill is level-0. You gain a +2 bonus on all cyber implant surgery skill checks. If you perform cyber maintenance for a person, the delicacy of your adjustments decreases the total System Strain cost of their implants by one point until their next maintenance interval.",
         "level_2":"The quality of your cyber maintenance improves; the System Strain decrease is equal to two points now. You never fail to install cyberware correctly. Once per patient, you can build and bridge and install a cyber modification to a system without any cost in money or experimental components, assuming you have the requisite skill levels to build it.",
-        "level_1_sum":"Gain Fix and Heal as bonus skills. Get a cyberdoc kit, +2 bonus to cyber surgery checks and decrease System Strain during maintenance.",
+        "level_1_sum":"Gain Fix and Heal as bonus skills. +2 bonus to cyber surgery checks and bonus to maintenance",
         "level_2_sum":"System Strain decrease is +2, never fail, and can create a free modification to a cyber system.",
         "level_1_skill":"Heal and Fix",
         "level_2_skill":""
@@ -84,8 +84,8 @@
         "desc":"You have a gift with ranged weapons. While this talent most commonly applies to guns, it is also applicable to thrown weapons or other ranged weapons that can be used with the Shoot skill. For thrown weapons, you can't benefit from this Focus and Armsmaster at the same time.",
         "level_1":"Gain Shoot as a bonus skill. You can Ready as Stowed ranged weapon as an Instant action. You may use a rifle or a two-handed ranged weapon even when an enemy is within melee range, albeit at a -4 hit penalty. You may add your Shoot skill level to a ranged weapon's damage roll",
         "level_2":"You can reload guns, crossbows, or other slow-loading weapons as an On Turn action, provided they don't take more than a round to reload. You can use ranged weapons of any size in melee without penalty. Once per scene, as an On Turn action when target shooting at an inanimate, non-creature target you automatically hit unless you roll a 2 on your Shoot skill check or the shot is physically impossible.",
-        "level_1_sum":"Gain Shoot as a bonus skill. Ready stowed ranged weapon instantly. No penalties on using rifle or two-handed ranged weapon in melee. Add Shoot skill to ranged damage roll.",
-        "level_2_sum":"Reload ranged weapons as an On Turn action. Use any ranged weapon in melee without penalty. Automatically hit non-living targets.",
+        "level_1_sum":"Shoot bonus skill. Ready stowed ranged weapon instantly, no melee range penalty. Shoot bonus to damage.",
+        "level_2_sum":"Reload as On Turn action. Any range weapon, no melee penalty. Automatically hit non-living targets.",
         "level_1_skill":"Shoot",
         "level_2_skill":""
     },
@@ -104,7 +104,7 @@
         "desc":"While anyone can drive a drone under casual circumstances, your knack for it is something unusual.",
         "level_1":"Gain Drive and Fix as bonus skills. You acquire or start play with a Remote Control Unit cybersystem and its installation. Through connections, scavenging, and parts repurpose, you have free drones and their weapons and fittings worth no more than the budget given for Foci. You can repair these drones without needing spare parts, and destroyed drones can be replaced with a week's work. You always have the equivalent of a drone repair kit on you at no Encumbrance cost.",
         "level_2":"You can use the Assume Command drone action once per round as an On Turn action. Once per scene, gain a bonus Main Action to command a drone. Any drones you control gain a +2 bonus to their hit rolls, whether or not you're personally firing their weaponry.",
-        "level_1_sum":"Gain Drive and Fix as bonus skills. Start with Remote Control Unit and free drones. Can repair and replace them with time.",
+        "level_1_sum":"Drive and Fix bonus skills. Remote Control unit and free drones. Can repair and replace them with time.",
         "level_2_sum":"Assume Command as an On Turn action. Bonus action to control a drone, and +2 to their hit rolls.",
         "level_1_skill":"Drive and Fix",
         "level_2_skill":""
@@ -124,7 +124,7 @@
         "desc":"Healing comes naturally to you, and you're particularly gifted at preventing the quick bleed-out of wounded allies and comrades.",
         "level_1":"Gain Heal as a bonus skill. You may attempt to stabilize one mortally-wounded adjacent person per round as an On Turn action. When rolling Heal skill checks, roll 3d6 and drop the lowest die.",
         "level_2":"Pharmaceuticals or other technological healing devices applied by you heal twice as many hit points as normal. Using only basic medical supplies you can heal 1d6+Heal skill hit points of damage to every injured or wounded person in your group with ten minutes of first aid spread among them. Such healing adds no System Strain but can be applied to a given target only once per day.",
-        "level_1_sum":"Gain Heal as a bonus skill. Can stabilize one person as an On Turn action. For Heal checks, roll 3d6 and drop lowest.",
+        "level_1_sum":"Gain Heal as a bonus skill. Stabilize as an On Turn action. For Heal checks, roll 3d6 and drop lowest.",
         "level_2_sum":"Double drugs or technology healing. Heal everyone 1d6+Heal with 10 minutes.",
         "level_1_skill":"Heal",
         "level_2_skill":""
@@ -214,7 +214,7 @@
         "desc":"Your empty hands are more dangerous than knives in the grip of the less gifted. Your unarmed attacks are counted as melee weapons when it comes to binding up opponents wielding pistols, rifles and similar ranged arms, though you need at least one hand free to do so.",
         "level_1":"Gain Punch as a bonus skill. Your unarmed attacks become more dangerous as your Punch skill increases. At level-0, they do 1d6 damage. At level-1, they do 1d8 damage. At level-2 they do 1d10, level-3 does 1d12, and level-4 does 1d12+1. At Punch-1 or better, they have the Shock quality equal to your Punch skill against AC 15 or less. While your normally add your Punch skill level to any unarmed damage you inflict, don't add it twice to Shock damage. If you choose to strike lethally with unarmed attacks, they have a Trauma Die of 1d6 and a Trauma Rating of x2.",
         "level_2":"Even on a miss with a Punch attack, you do an unmodified 1d6 damage, plus any Shock that the blow might inflict on the target. Your Trauma Die becomes 1d8 for lethal attacks.",
-        "level_1_sum":"Gain Punch as a bonus skill. Unarmed Attacks scale with Punch level; 0:1d6, 1:1d8, 2:1d10, 3:1d12, 4:1d12+1. As well as Shock and Trauma damage.",
+        "level_1_sum":"Punch bonus skill. Unarmed attack scale with Punch; 0:1d6, 1:1d8, 2:1d10, 3:1d12, 4:1d12+1",
         "level_2_sum":"1d6 damage even on a miss, and 1d8 lethal attacks.",
         "level_1_skill":"Punch",
         "level_2_skill":""
