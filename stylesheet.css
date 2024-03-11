@@ -1,0 +1,174 @@
+.bodyGrid{
+    display: grid;
+    grid-template-columns: 1fr 850px 1fr;
+    column-gap: 5px;
+    background: #fff;
+}
+
+.sidebar{
+    background: #161128;
+}
+
+.topSection{
+    grid-template-columns: 29% 69%;
+    column-gap: 10px;
+}
+
+.topLeft{
+    grid-template-rows: 1.5em 1.5em 1.5em auto 3em;
+}
+
+.topRight{
+    display: grid;
+    grid-template-rows: 1.8em auto 30px;
+}
+
+.skillTable{
+    display: grid;
+    grid-template-columns: 180px 165px 195px;
+    row-gap: 0px;
+    column-gap: 10px;
+    border: 1px solid black;
+    padding-left: 8px;
+    padding-right: 13px;
+    padding-bottom: 0px;
+}
+
+.skillTable_Heading{
+    display:inline-grid; 
+    grid-template-columns: 90px 101px 70px 100px 105px 101px;
+    font-size: 28px;
+}
+
+.skillBlock{
+    display: grid;
+    grid-template-columns: 1fr 85px 10px;
+    column-gap: 2px;
+    margin-bottom: 8px;
+    height: 20px;
+}
+
+.ability_box{
+    display: grid;
+    border: 1px solid black;
+    grid-template-columns: 50% 22% 22%;
+    row-gap: 2px;
+    column-gap: 10px;
+    grid-auto-rows: 22px;
+}
+
+.heading{
+    font-weight: bold;
+}
+
+.savingThrows{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+    border: 1px solid black;
+    column-gap: 5px;
+}
+
+body{
+    font-family: 'Source Sans Pro';
+}
+
+.attributeButton{
+    width: 50%;
+    height: 75px;
+}
+
+.statSelector{
+    width: 60px;
+}
+
+.statLabel{
+    width: 60px;
+    margin-left: 3px;
+}
+
+.learningDiv > p{
+    margin-bottom: 5px;
+    margin-top: 0px;
+
+}
+
+select:disabled{
+    opacity: 1 !important;
+    color: black;
+    border: 1px solid #444;
+}
+
+.disabledSelect {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-overflow: '';
+    text-align: center;
+}
+
+.checkbox-label {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 12px;
+    height: 13px;
+    width: 13px;
+    clear: both;
+    
+}
+
+.checkbox-label input {
+    position: absolute;
+    margin: 0px;
+    /* cursor: pointer; */
+}
+
+.mod{
+    text-align: center;
+    font-family: 'Play', sans-serif;
+}
+
+.buttonGroup {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    column-gap: 3px;
+    z-index: 2;
+}
+
+.header {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 150px;
+}
+
+.headerText {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    height: 150px;
+    z-index: 2;
+    display: block;
+}
+
+.headerBackground {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.ui-state-active{
+    border: 1px solid black !important;
+    background: #ac61b9 !important;
+}

@@ -1,0 +1,69 @@
+// NAME BCKGROUND LVL //
+Name
+Background
+Level
+
+// SKILL LEVELS //
+AdminLvl
+ConnectLvl
+DriveLvl
+ExertLvl
+FixLvl
+HealLvl
+KnowLvl
+LeadLvl
+NoticeLvl
+PerformLvl
+ProgramLvl
+PunchLvl
+ShootLvl
+SneakLvl
+StabLvl
+SurviveLvl
+TalkLvl
+TradeLvl
+WorkLvl
+
+// EDGES //
+First Edge
+Second Edge
+
+// ATTACK BONUS //
+AB
+
+// HP Value //
+MaxHP
+
+// SAVING THROWS //
+PSave
+ESave
+MSave
+LSave
+
+// ATTRIBUTE SCORE AND MODIFIER //
+Str
+StrMod
+Dex
+DexMod
+Con
+ConMod
+Int
+IntMod
+Wis
+WisMod
+Cha
+ChaMod
+
+// FOCI, DETAILS AND LEVEL //
+Focus1
+Focus Details1
+Focus1Lvl
+Focus2
+Focus Details2
+Focus2Lvl
+Focus3
+Focus Details3
+Focus3Lvl
+Focus4
+Focus Details4
+Focus4Lvl
