@@ -27,12 +27,16 @@
         <script src="https://unpkg.com/downloadjs@1.4.7"></script>
     </head>
 
-    <body onload="generateSkillBoxes()">
+    <body onload="generateSkillBoxes()" style="margin: 0px;">
+        <div class="header">
+            <img src="./assets/ai_city_pixabay.jpg" class="headerBackground">
+            <img src="./assets/HeaderTitle.png" class="headerText">
+        </div>
         <div class="bodyGrid">
             <div class="sidebar"></div>
 
             <div class="contentSection">
-                <div class="topSection" style="display: grid;">
+                <div class="topSection" style="display: grid; margin-top: 5px;">
                     <!-- Contains name, background, ability score -->
                     <div class="topLeft">
                         <!-- name, background  width - 212.5-->
@@ -97,12 +101,12 @@
                     <!-- Contains skill box -->
                     <div class="topRight">
                         <div class="skillTable_Heading">
-                            <div>Skill</div>
-                            <div>Rank</div>
-                            <div>Skill</div>
-                            <div>Rank</div>
-                            <div>Skill</div>
-                            <div>Rank</div>
+                            <div style="margin-left: 20px;">Skill</div>
+                            <div style="margin-left: 15px;">Rank</div>
+                            <div style="margin-left: 5px;">Skill</div>
+                            <div style="margin-left: 20px;">Rank</div>
+                            <div style="margin-left: 5px;">Skill</div>
+                            <div style="margin-left: 20px;">Rank</div>
                         </div>
                         <div class="skillTable" id="skillTable">
                             <!-- Markers and clarifying text -->
@@ -147,7 +151,6 @@
                 <div>
                     <h1 style="text-align: center;">Creation Steps</h1>
                 </div>
-                <button onclick="fillOutCharacterSheet()">PDF</button>
                 <!-- Steps for character creation, attribute, background, edges, foci, gear -->
                 <div id="accordion">
                     <h3>Attributes</h3>
@@ -604,12 +607,37 @@
                     <h3>Finishing Touches</h3>
                     <div>
                         <p>
-                        Here you will roll your for your hitpoints, and review your saving throws and base attack bonus. <br>Hitpoints are 1d6 or 1d6
+                        Here you will choose a bonus skill, roll your for your hitpoints, and review your saving throws and base attack bonus. <br>Hitpoints are 1d6 or 1d6
                          +2 if you have the <b>Hard to Kill</b> edge. Base attack bonus is +0, or +1 if you have the <b>On Target</b> edge. Physical saves are 15 minus
                          the better of your Strength or Constitution modifiers. Evasion saves are 15 minus the better of your Intelligence or Dexterity modifiers. Mental
                          saves are 15 minus the better of your Wisdom or Charisma modifiers. <br><b>Note:</b> Only complete this section after your edges and ability scores
                          are finalized.
                         </p>
+                        <div>
+                            <label for="lastBonusSkill">Bonus Skill:</label>
+                            <select id="lastBonusSkill" onchange="updateSkills(this.id, this.value)">
+                                <option selected hidden></option>
+                                <option value="Administer">Administer</option>
+                                <option value="Connect">Connect</option>
+                                <option value="Drive">Drive</option>
+                                <option value="Exert">Exert</option>
+                                <option value="Fix">Fix</option>
+                                <option value="Heal">Heal</option>
+                                <option value="Know">Know</option>
+                                <option value="Lead">Lead</option>
+                                <option value="Notice">Notice</option>
+                                <option value="Perform">Perform</option>
+                                <option value="Program">Program</option>
+                                <option value="Punch">Punch</option>
+                                <option value="Shoot">Shoot</option>
+                                <option value="Sneak">Sneak</option>
+                                <option value="Stab">Stab</option>
+                                <option value="Survive">Survive</option>
+                                <option value="Talk">Talk</option>
+                                <option value="Trade">Trade</option>
+                                <option value="Work">Work</option>
+                            </select>
+                        </div>
                         <div>
                             <div style="display: grid; grid-template-columns: 226.315px 105px 115px 105px 226.315px;">
                                 <div></div>
@@ -639,6 +667,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="buttonGroup">
+                    <button id="downloadButton" onclick="fillOutCharacterSheet()">Download</button>
                 </div>
             </div>
 
