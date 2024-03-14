@@ -1,0 +1,74 @@
+{
+    "light_pistol":{
+        "name":"Light Pistol",
+        "range_normal":"10",
+        "range_extreme":"80",
+        "trauma_die":"1d8",
+        "trauma_rating":"x2",
+        "ammo":"15",
+        "damage":"1d6",
+        "attr":"Dex",
+        "encumbrance":"1",
+        "ranged":true
+    },
+    "heavy_pistol":{
+        "name":"Heavy Pistol",
+        "range_normal":"10",
+        "range_extreme":"100",
+        "trauma_die":"1d6",
+        "trauma_rating":"x3",
+        "ammo":"8",
+        "damage":"1d8",
+        "attr":"Dex",
+        "encumbrance":"1",
+        "ranged":true
+    },
+    "rifle":{
+        "name":"Rifle",
+        "range_normal":"200",
+        "range_extreme":"400",
+        "trauma_die":"1d8",
+        "trauma_rating":"x3",
+        "ammo":"6",
+        "damage":"1d10+2",
+        "attr":"Dex",
+        "encumbrance":"2",
+        "ranged":true
+    },
+    "knife":{
+        "name":"Knife",
+        "range_normal":"10",
+        "range_extreme":"20",
+        "trauma_die":"1d6",
+        "trauma_rating":"x3",
+        "damage":"1d4",
+        "attr":"Str/Dex",
+        "encumbrance":"1",
+        "shock":"1/AC 15",
+        "ranged":false 
+    },
+    "armored_clothing":{
+        "name":"Armored Clothing",
+        "ranged_ac":"16",
+        "melee_ac":"14",
+        "damage_soak":"5",
+        "encumbrance":"2",
+        "tt_bonus":"1"
+    },
+    "reinforced_clothing":{
+        "name":"Reinforced Clothing",
+        "ranged_ac":"13",
+        "melee_ac":"10",
+        "damage_soak":"2",
+        "encumbrance":"0",
+        "tt_bonus":"0"
+    },
+    "ordinary_clothing":{
+        "name":"Ordinary Clothing",
+        "ranged_ac":"10",
+        "melee_ac":"10",
+        "damage_soak":"0",
+        "encumbrance":"0",
+        "tt_bonus":"0"
+    }
+}

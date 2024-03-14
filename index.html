@@ -453,6 +453,8 @@
                             opening up the choices significantly.
                             <br><b>Note:</b>If you plan on taking two levels in the same focus, you <i>MUST</i> select them in the proper order, otherwise it will display
                             incorrectly.
+                            <br>Due to Focis' unique nature, they provide many varying changes to core mechanics. As such, their changes will not be shown on the final character 
+                            sheet. It will require individual alteration, and is dependent on you as the player to be aware of what your Foci provide you.
                         </p>
                         <div>
                             <div>
@@ -667,6 +669,30 @@
                             </div>
                         </div>
                     </div>
+                    <h3>Gear Choice</h3>
+                    <div>
+                        <p>
+                            You will make a choice of gear packages. If your background, Edges, or Foci provided additional gear, this is in addition to those.
+                            Each package will provide some kind of ranged weapon, potentially a melee weapon, and some form of clothing or armor.
+                            <br>Any weapons or armor given by the package will have their base details shown.
+                        </p>
+                        <label for="gearChoice">Gear Package:</label>
+                        <select id="gearChoice" onchange="showGearInfo(this.id)">
+                            <option selected hidden></option>
+                            <option value="gunslinger">Gunslinger</option>
+                            <option value="tech">Tech</option>
+                            <option value="face">Face</option>
+                            <option value="badlander">Badlander</option>
+                            <option value="medic">Medic</option>
+                            <option value="hacker">Hacker</option>
+                        </select>
+                        <div id="gearFull" style="border: 1px solid black; height: fit-content; background-color:#F0F0F0; display: none; grid-template-columns: 259.21px 259.21px 257.21px;"></div>
+                        <br>
+                        <div id="gearWeapons"></div>
+                        <br>
+                        <div id="gearArmor"></div>
+                    </div>
+                    
                 </div>
                 <div class="buttonGroup">
                     <button id="downloadButton" onclick="fillOutCharacterSheet()">Download</button>
