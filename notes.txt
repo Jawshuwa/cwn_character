@@ -67,3 +67,28 @@ Focus3Lvl
 Focus4
 Focus Details4
 Focus4Lvl
+
+
+// Weapon Info
+Weapon Name1
+CloseRange1
+Far Range1
+Trauma Die1
+Trauma Mult1
+MagSize1
+Damage1
+Shock1
+AB1
+------ Change the 1 to a 2 for the second weapon ------
+
+// Armor
+MAC
+RAC
+ArSoak
+TT
+Current Armor
+
+// Readied Items
+Readied Item1
+Readied Item2
+---- and so on and so forth ----

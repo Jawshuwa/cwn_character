@@ -348,7 +348,7 @@ async function showEdgeDescription(select, select2, select3, desc, extraDiv, pro
 
 function testFunction(id)
 {
-    console.log(document.getElementById(id).value);
+    console.log(document.body.contains(document.getElementById('weapon_0')));
 }
 
 // Function to updateSkills to a pseudo-dictionary
@@ -1228,6 +1228,102 @@ async function fillOutCharacterSheet()
         }
     }
 
+    // Gear
+    // document.body.contains(document.getElementById('weapon_1')
+    form.getTextField('Weapon Name1').setText(document.getElementById('weapon_0').textContent);
+    form.getTextField('CloseRange1').setText(document.getElementById('normal_range_0').textContent);
+    form.getTextField('Far Range1').setText(document.getElementById('extreme_range_0').textContent);
+    form.getTextField('Trauma Die1').setText(document.getElementById('trauma_die_0').textContent);
+    form.getTextField('Trauma Mult1').setText(document.getElementById('trauma_mult_0').textContent);
+    form.getTextField('MagSize1').setText(document.getElementById('ammo_0').textContent);
+    
+    let dmg_mod = parseInt(document.getElementById('dexMod').textContent);
+    if (firstEdge == 'Killing Blow' || secondEdge == 'Killing Bow')
+    {
+        dmg_mod = dmg_mod + 1;
+        form.getTextField('Trauma Die1').setText(document.getElementById('trauma_die_0').textContent + "+1");
+    }
+
+    form.getTextField('Damage1').setText(document.getElementById('dmg_0').textContent + "+" + dmg_mod.toString());
+    let abBonus = 0;
+    if (document.getElementById('shootMod').textContent == "")
+    {
+        abBonus = -2;
+    }
+    else
+    {
+        abBonus = parseInt(document.getElementById('shootMod').textContent);
+    }
+    abBonus = abBonus + parseInt(document.getElementById('dexMod').textContent);
+    form.getTextField('AB1').setText(abBonus.toString());
+    // if there is a knife
+    if (document.body.contains(document.getElementById('weapon_1')))
+    {
+        form.getTextField('Weapon Name2').setText(document.getElementById('weapon_1').textContent);
+        form.getTextField('CloseRange2').setText(document.getElementById('normal_range_1').textContent);
+        form.getTextField('Far Range2').setText(document.getElementById('extreme_range_1').textContent);
+        form.getTextField('Trauma Die2').setText(document.getElementById('trauma_die_1').textContent);
+        form.getTextField('Trauma Mult2').setText(document.getElementById('trauma_mult_1').textContent);
+        
+        // determine if strength or dex is higher
+        let bonusMod = 0;
+        if (parseInt(document.getElementById('dexMod').textContent) > parseInt(document.getElementById('strMod').textContent))
+        {
+            bonusMod = parseInt(document.getElementById('dexMod').textContent);
+        }
+        else
+        {
+            bonusMod = parseInt(document.getElementById('strMod').textContent);
+        }
+        
+        // Calculate damage if Killing Blow edge is selected
+        let dmg_mod2 = bonusMod;
+        if (firstEdge == 'Killing Blow' || secondEdge == 'Killing Bow')
+        {
+            dmg_mod2 = dmg_mod2 + 1;
+            form.getTextField('Trauma Die2').setText(document.getElementById('trauma_die_1').textContent + "+1")
+        }
+
+
+        form.getTextField('Damage2').setText(document.getElementById('dmg_1').textContent + "+" + dmg_mod2.toString());
+        let abBonus2 = 0;
+        if (document.getElementById('stabMod').textContent == "")
+        {
+            abBonus2 = -2;
+        }
+        else
+        {
+            abBonus2 = parseInt(document.getElementById('stabMod').textContent);
+        }
+        abBonus2 = abBonus2 + bonusMod;
+        form.getTextField('AB2').setText(abBonus2.toString());
+        form.getTextField('Shock2').setText(document.getElementById('shock_1').textContent);
+    }
+
+    // Armor
+    form.getTextField('Current Armor').setText(document.getElementById('armor_0').textContent);
+    let MAC = parseInt(document.getElementById('melee_ac_0').textContent) + parseInt(document.getElementById('dexMod').textContent);
+    form.getTextField('MAC').setText(MAC.toString());
+    let RAC = parseInt(document.getElementById('ranged_ac_0').textContent) + parseInt(document.getElementById('dexMod').textContent);
+    form.getTextField('RAC').setText(RAC.toString());
+    form.getTextField('ArSoak').setText(document.getElementById('damage_soak_0').textContent);
+
+    let tt = 6;
+    if (firstEdge == 'Hard To Kill' || secondEdge == 'Hard To Kill')
+    {
+        console.log('here');
+        tt = 7;
+    }
+    tt = tt + parseInt(document.getElementById('trauma_target_bonus_0').textContent);
+    form.getTextField('TT').setText(tt.toString());
+
+    var iterate = 1;
+    for (var item in otherItems)
+    {
+        form.getTextField('Readied Item' + iterate).setText(otherItems[iterate - 1]);
+        iterate++;
+    }
+
     const pdfBytes = await pdfDoc.save();
     download(pdfBytes, document.getElementById('c_name').value + '_cwn_sheet.pdf', 'application/pdf');     
 }
@@ -1262,4 +1358,177 @@ async function getFociSum(name, level)
     }
 
     return sum;
+}
+
+let otherItems = [];
+
+async function showGearInfo(id)
+{
+    let obj;
+    const res = await fetch('./json/gear.json')
+    obj = await res.json();
+
+    var selected = document.getElementById(id).value;
+    document.getElementById('gearFull').innerHTML = "";
+
+    for (var item of obj[selected].items)
+    {
+        var itemDiv = document.createElement('div');
+        itemDiv.textContent = item;
+        itemDiv.style.textAlign = 'center';
+        itemDiv.style.border = '1px solid #e1e1e1';
+        document.getElementById('gearFull').appendChild(itemDiv);
+    }
+
+    let obj2;
+    const res2 = await fetch('./json/items.json');
+    obj2 = await res2.json()
+
+    otherItems = [];
+    document.getElementById('gearWeapons').innerHTML = "";
+    document.getElementById('gearArmor').innerHTML = "";
+
+    let weaponNum = 0;
+    let armorNum = 0;
+    for (var item of obj[selected].items)
+    {
+        // Confirms that the item exists in the items.json file
+        if (typeof obj2[item.toLowerCase().replace(" ", "_")] != "undefined")
+        {
+            var item2 = item.toLowerCase().replace(" ", "_")
+
+            // true = ranged weapon, false = melee weapon or armor
+            if (obj2[item2].ranged == true)
+            {
+                var outerDiv = document.createElement('div');
+                var titleP = document.createElement('p');
+                titleP.innerHTML = "<b>" + obj2[item2].name + "</b>";
+                titleP.style.marginBottom = '2px';
+                titleP.style.marginTop = '2px';
+                titleP.id = "weapon_" + weaponNum;
+                outerDiv.appendChild(titleP);
+                
+
+                var innerDiv = document.createElement('div');
+                innerDiv.style.marginLeft = '20px';
+                innerDiv.style.display = 'grid';
+                innerDiv.style.gridTemplateColumns = "25% 25% 25% 25%";
+                innerDiv.style.border = "1px solid black";
+
+                let weaponProperties = {"Dmg":obj2[item2].damage, "Normal Range":obj2[item2].range_normal, "Extreme Range":obj2[item2].range_extreme, "Trauma Die":obj2[item2].trauma_die, "Trauma Mult.":obj2[item2].trauma_rating,
+                                            "Ammo":obj2[item2].ammo, "Attr":obj2[item2].attr, "Enc":obj2[item2].encumbrance};
+                for (var key in weaponProperties)
+                {
+                    var container = document.createElement('div');
+                    container.style = "display: grid; grid-template-columns: max-content auto";
+                    var label = document.createElement('div');
+                    label.style.width = 'fit-content';
+                    var info = document.createElement('div');
+                    info.style.marginLeft = '5px';
+                    label.innerHTML = "<b>" + key + "</b>" +":";
+                    info.id = key.toLowerCase().replace(" ", "_").replace(".", "") + '_' + weaponNum;
+                    info.textContent = weaponProperties[key];
+
+                    container.appendChild(label);
+                    container.appendChild(info);
+                    innerDiv.appendChild(container);
+                }
+
+                outerDiv.appendChild(innerDiv);
+                document.getElementById('gearWeapons').appendChild(outerDiv);
+
+                weaponNum++;
+            }
+            else
+            {
+                // if this item is armor
+                if (typeof obj2[item2].ranged == "undefined")
+                {
+                    var outerDiv = document.createElement('div');
+                    var titleP = document.createElement('p');
+                    titleP.innerHTML = "<b>" + obj2[item2].name + "</b>";
+                    titleP.style.marginBottom = '2px';
+                    titleP.style.marginTop = '2px';
+                    titleP.id = "armor_" + armorNum;
+                    outerDiv.appendChild(titleP);
+
+                    var innerDiv = document.createElement('div');
+                    innerDiv.style.marginLeft = '20px';
+                    innerDiv.style.display = 'grid';
+                    innerDiv.style.gridTemplateColumns = "25% 25% 25% 25%";
+                    innerDiv.style.border = "1px solid black";
+    
+                    let weaponProperties = {"Ranged AC":obj2[item2].ranged_ac, "Melee AC":obj2[item2].melee_ac, "Damage Soak":obj2[item2].damage_soak, "Trauma Target Bonus":obj2[item2].tt_bonus, "Enc":obj2[item2].encumbrance};
+                    for (var key in weaponProperties)
+                    {
+                        var container = document.createElement('div');
+                        container.style = "display: grid; grid-template-columns: max-content auto";
+                        var label = document.createElement('div');
+                        label.style.width = 'fit-content';
+                        var info = document.createElement('div');
+                        info.style.marginLeft = '5px';
+                        label.innerHTML = "<b>" + key + "</b>" +":";
+    
+                        info.id = key.toLowerCase().replaceAll(" ", "_").replace(".", "") + '_' + armorNum;
+    
+                        info.textContent = weaponProperties[key];
+                        container.appendChild(label);
+                        container.appendChild(info);
+                        innerDiv.appendChild(container);
+                    }
+
+                    outerDiv.appendChild(innerDiv);
+                    document.getElementById('gearArmor').appendChild(outerDiv);
+
+                    armorNum++;
+                }
+                // if melee weapon
+                else
+                {
+                    var outerDiv = document.createElement('div');
+                    var titleP = document.createElement('p');
+                    titleP.innerHTML = "<b>" + obj2[item2].name + "</b>";
+                    titleP.style.marginBottom = '2px';
+                    titleP.style.marginTop = '2px';
+                    titleP.id = "weapon_" + weaponNum;
+                    outerDiv.appendChild(titleP);
+
+                    var innerDiv = document.createElement('div');
+                    innerDiv.style.marginLeft = '20px';
+                    innerDiv.style.display = 'grid';
+                    innerDiv.style.gridTemplateColumns = "25% 25% 25% 25%";
+                    innerDiv.style.border = "1px solid black";
+    
+                    let weaponProperties = {"Dmg":obj2[item2].damage, "Normal Range":obj2[item2].range_normal, "Extreme Range":obj2[item2].range_extreme, "Trauma Die":obj2[item2].trauma_die, "Trauma Mult.":obj2[item2].trauma_rating,
+                                                "Shock":obj2[item2].shock, "Attr":obj2[item2].attr, "Enc":obj2[item2].encumbrance};
+                    for (var key in weaponProperties)
+                    {
+                        var container = document.createElement('div');
+                        container.style = "display: grid; grid-template-columns: max-content auto";
+                        var label = document.createElement('div');
+                        label.style.width = 'fit-content';
+                        var info = document.createElement('div');
+                        info.style.marginLeft = '5px';
+                        label.innerHTML = "<b>" + key + "</b>" +":";
+    
+                        info.id = key.toLowerCase().replaceAll(" ", "_").replace(".", "") + '_' + weaponNum;
+    
+                        info.textContent = weaponProperties[key];
+                        container.appendChild(label);
+                        container.appendChild(info);
+                        innerDiv.appendChild(container);
+                    }
+
+                    outerDiv.appendChild(innerDiv);
+                    document.getElementById('gearWeapons').appendChild(outerDiv);
+
+                    weaponNum++;
+                }
+            }
+        }
+        else
+        {
+            otherItems.push(item);
+        }
+    }
 }

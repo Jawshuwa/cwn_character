@@ -1,0 +1,26 @@
+{
+    "gunslinger":{
+        "name":"Gunslinger",
+        "items":["Heavy Pistol", "3 mags/24 rounds", "Knife", "Armored Clothing",  "Smartphone", "Trauma Patch"]
+    },
+    "tech":{
+        "name":"Tech",
+        "items":["Light Pistol", "3 mags/45 rounds", "Knife", "Ordinary Clothing", "Toolkit", "Lockpicks", "Smartphone", "$50"]
+    },
+    "face":{
+        "name":"Face",
+        "items":["Light Pistol", "3 mags/45 rounds", "Knife", "Reinforced Clothing", "Smartphone", "Fashionable Clothing", "$125"]
+    },
+    "badlander":{
+        "name":"Badlander",
+        "items":["Rifle", "3 mags/18 rounds", "Knife", "Ordinary Clothing", "Trauma Patch", "Survival Kit", "3 days of rations"]
+    },
+    "medic":{
+        "name":"Medic",
+        "items":["Light Pistol", "3 mags/45 rounds", "Ordinary Clothing", "Cyberdoc Kit", "Trauma Patch (3)", "6 doses of Lurch", "Smartphone", "$50"]
+    },
+    "hacker":{
+        "name":"Hacker",
+        "items":["Light Pistol", "3 mags/45 rounds", "Ordinary Clothing", "Scrap Cyberdeck", "Cheap VR Crown", "Smartphone", "$50"]
+    }
+}
