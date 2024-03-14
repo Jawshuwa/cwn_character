@@ -1370,6 +1370,7 @@ async function showGearInfo(id)
 
     var selected = document.getElementById(id).value;
     document.getElementById('gearFull').innerHTML = "";
+    document.getElementById('gearFull').style.display = 'grid';
 
     for (var item of obj[selected].items)
     {
