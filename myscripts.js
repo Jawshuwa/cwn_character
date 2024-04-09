@@ -1122,7 +1122,7 @@ async function fillOutCharacterSheet()
                 form.getTextField('Focus Details1').setText(foci1_desc);
                 form.getTextField('Focus1Lvl').setText('' + foci1_lvl + '');
                 form.getTextField('Focus2').setText(foci3);
-                form.getTextField('Focus Detail2').setText(foci3_desc);
+                form.getTextField('Focus Details2').setText(foci3_desc);
                 form.getTextField('Focus2Lvl').setText('' + foci3_lvl + '');
             }
             // Foci1 == Foci3
@@ -1137,7 +1137,7 @@ async function fillOutCharacterSheet()
                 form.getTextField('Focus Details1').setText(foci1_desc);
                 form.getTextField('Focus1Lvl').setText('' + foci1_lvl + '');
                 form.getTextField('Focus2').setText(foci2);
-                form.getTextField('Focus Detail2').setText(foci2_desc);
+                form.getTextField('Focus Details2').setText(foci2_desc);
                 form.getTextField('Focus2Lvl').setText('' + foci2_lvl + '');
             }
             // Foci2 == Foci3
@@ -1152,7 +1152,7 @@ async function fillOutCharacterSheet()
                 form.getTextField('Focus Details1').setText(foci1_desc);
                 form.getTextField('Focus1Lvl').setText('' + foci1_lvl + '');
                 form.getTextField('Focus2').setText(foci2);
-                form.getTextField('Focus Detail2').setText(foci2_desc);
+                form.getTextField('Focus Details2').setText(foci2_desc);
                 form.getTextField('Focus2Lvl').setText('' + foci2_lvl + '');
             }
             // All Foci are unique
@@ -1168,7 +1168,7 @@ async function fillOutCharacterSheet()
                 form.getTextField('Focus Details1').setText(foci1_desc);
                 form.getTextField('Focus1Lvl').setText('' + foci1_lvl + '');
                 form.getTextField('Focus2').setText(foci2);
-                form.getTextField('Focus Detail2').setText(foci2_desc);
+                form.getTextField('Focus Details2').setText(foci2_desc);
                 form.getTextField('Focus2Lvl').setText('' + foci2_lvl + '');
                 form.getTextField('Focus3').setText(foci3);
                 form.getTextField('Focus Details3').setText(foci3_desc);
@@ -1182,7 +1182,7 @@ async function fillOutCharacterSheet()
             form.getTextField('Focus Details1').setText(foci1_desc);
             form.getTextField('Focus1Lvl').setText('' + 1 + '');
             form.getTextField('Focus2').setText('Pop Idol');
-            form.getTextField('Focus Detail2').setText(document.getElementById('popDesc').textContent);
+            form.getTextField('Focus Details2').setText(document.getElementById('popDesc').textContent);
             form.getTextField('Focus2Lvl').setText('' + 2 + '');
         }
         // Two unique Foci
@@ -1207,7 +1207,7 @@ async function fillOutCharacterSheet()
                 form.getTextField('Focus Details1').setText(foci1_desc);
                 form.getTextField('Focus1Lvl').setText('' + foci1_lvl + '');
                 form.getTextField('Focus2').setText(foci2);
-                form.getTextField('Focus Detail2').setText(foci2_desc);
+                form.getTextField('Focus Details2').setText(foci2_desc);
                 form.getTextField('Focus2Lvl').setText('' + foci2_lvl + '');
             }
         }
@@ -1223,7 +1223,7 @@ async function fillOutCharacterSheet()
         if (firstEdge == 'Voice of the People' || secondEdge == 'Voice of the People')
         {
             form.getTextField('Focus2').setText('Pop Idol');
-            form.getTextField('Focus Detail2').setText(document.getElementById('popDesc').textContent);
+            form.getTextField('Focus Details2').setText(document.getElementById('popDesc').textContent);
             form.getTextField('Focus2Lvl').setText('' + 2 + '');
         }
     }
